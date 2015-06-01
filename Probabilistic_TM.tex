@@ -56,8 +56,45 @@ Ferner gilt für die Akzeptanz von $w$
 
 \paragraph{Lösungen:}
 \begin{description}
-	\item [a.)] TODO
+	\item [a.)] \ \\
+\begin{tikzpicture}[level/.style={sibling distance=4cm/#1}]
+	\node (0)[circle,draw]{$q_0$}
+  	child {
+  		node (12)[circle,draw]{$q_1$} 
+  		child {
+  			node (21)[circle,draw]{$\times$}
+  			edge from parent node[left,draw=none,myblue] {$b0$}
+  		}
+  		child {
+  			node (22)[circle,draw]{$\times$}
+  			edge from parent node[right,draw=none,myblue] {$b1$}
+  		}
+  		edge from parent node[left,draw=none,myblue] {$a0$}
+    }
+    child {
+    	node (11)[circle,draw]{$q_3$}
+    	child {
+  			node (23)[circle,draw]{$\times$}
+  			edge from parent node[left,draw=none,myblue] {$b0$}
+  		}
+  		child {
+  			node (24)[circle,draw]{$q_3$}
+  			child {
+  				node (31)[circle,draw]{$\checkmark$}
+  				edge from parent node[left,draw=none,myblue] {$B0$}
+  			}
+  			child {
+  				node (32)[circle,draw]{$\checkmark$}
+  				edge from parent node[right,draw=none,myblue] {$B1$}
+  			}
+  			edge from parent node[right,draw=none,myblue] {$b1$}
+  		}
+  		edge from parent node[right,draw=none,myblue] {$a1$}
+    };
+\end{tikzpicture}
 	\item [b.)] $\underbrace{\frac{1}{2}}_{\substack{1.\ Zufallsbit \\ ist\ 0}}\ +\ \underbrace{\frac{1}{2}2^{-i}}_{\substack{1.\ Zufallsbit \\ ist\ 1}} \quad = \quad \frac{1}{2} + 2^{-(i+1)}$
 	\item [c.)] $\underbrace{0}_{\substack{1.\ Zufallsbit \\ ist\ 0}}\ +\ \underbrace{\frac{1}{2}2^{-i}}_{\substack{1.\ Zufallsbit \\ ist\ 1}} \quad = \quad 2^{-(i+1)}$ \\ $\Rightarrow\ P(M\ akzeptiert\ w)\ =\ 2^{-6}\ =\ \frac{1}{64}$
 \end{description}
+
+
 
