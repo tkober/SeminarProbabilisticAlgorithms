@@ -1,5 +1,4 @@
 \section{Probabilistische Turingmaschinen}
-
 \subsection{Definition}
 Wir nutzen das Modell der Mehrband-Turingmaschine um abstrakt die Fähigkeit einer Turing-Maschine zu zeigen, eine zufällige Auswahl zu treffen, entsprechend einem Programm, das einen Zufallszahlengenerator einmal oder mehrfach aufruft.
 Auf dem ersten Band steht wie bei einer Mehrband-Turingmaschine üblich die Eingabe.
@@ -9,9 +8,15 @@ Die übrigen Bänder sind initial leer und können nach Bedarf als \emph{Hilfsb�
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=.8\textwidth]{Graphics/Probabilistic_TM}	
+	\caption{Darstellung einer zufallsabhängigen Turingmaschine}
+	\label{fig:probabilistic_tm}
 \end{figure}
 
 Wir nennen dieses Modell einer Turingmaschine \emph{zufallsabhängige Turingmaschine} oder \emph{probabilistische Turingmaschine}.
+
+\paragraph{Bemerkung}
+Eine zufallsabhängige Turingmaschine kann als eine Art nichtdeterministische Turingmaschine gesehen werden, bei welcher jeder nichtdeterministische Berechnungsschritt vom Inhalt des Zufallsbandes abhängt.
+Einen solchen Berechnungsschritt bezeichnen wir im Folgenden als \emph{Coin-Flip-Schritt}.
 
 
 \subsection{Initialisierung des Zufallsbandes}
@@ -24,7 +29,35 @@ Liest der Lese-Schreibkopf auf dem Zufallsband nun ein \emph{Blank}, so wird int
 Das generierte Symbol wird anschließend nicht wieder verändert.
 Auf diese Weise scheint das Zufallsband vollständig initialisiert.
 
-\subsection{Beispiel: Probabilistischer Quicksort}
 
+\subsection{Sprache einer zufallsabhängigen Turingmaschine}
+Wir sind an Berechnungsmodelle gewöhnt, die immer eine Sprache akzeptieren, zum Beispiel auch $\emptyset$ oder $\Sigma^*$.
+Mit dem Begriff der \emph{Akzeptanz} müssen wir bei einer zufallsabhängigen Turingmaschine $M$ etwas vorsichtiger umgehen.
+So kann es zum Beispiel vorkommen, dass gar keine Sprache akzeptiert wird.
+Es ist sogar möglich, dass $M$ bei gleicher Eingabe und entsprechendem Inhalt auf dem Zufallsband akzeptiert und bei einem anderen Inhalt auf dem Zufallsband nicht akzeptiert.
+Dieses Verhalten ist eventuell sogar gewünscht, wenn eine zufallsabhängige Turingmaschine effizienter arbeiten soll als eine deterministische.
 
-\subsection{Sprache}
+Wollen wir eine Aussage über die Verarbeitung einer Eingabe $w$ auf einer zufallsabhängigen Turingmaschine $M$ machen, so müssen wir betrachten wie $M$ sich bei allen möglichen Inhalten des Zufallsbandes verhält.
+
+\paragraph{Definition}
+Sei $M$ eine zufallsabhängige Turingmaschine.
+Für die Wahrscheinlichkeit einer Berechnung $b$ auf einer Eingabe $w$ gilt
+\begin{equation*}
+	P(b) = 2^{-k}
+\end{equation*}
+wobei $k$ die Anzahl der \emph{Coin-Flip-Schritte} in $b$ ist. 
+Ferner gilt für die Akzeptanz von $w$
+\begin{equation*}
+	P(M\ akzeptiert\ w) = \sum_{\substack{b\ ist\ akz.\\ Berechnung}} P(b) 
+\end{equation*}
+
+\subsection{Beispiel}
+\input{PTM_Example}
+
+\paragraph{Lösungen:}
+\begin{description}
+	\item [a.)] TODO
+	\item [b.)] $\underbrace{\frac{1}{2}}_{\substack{1.\ Zufallsbit \\ ist\ 0}}\ +\ \underbrace{\frac{1}{2}2^{-i}}_{\substack{1.\ Zufallsbit \\ ist\ 1}} \quad = \quad \frac{1}{2} + 2^{-(i+1)}$
+	\item [c.)] $\underbrace{0}_{\substack{1.\ Zufallsbit \\ ist\ 0}}\ +\ \underbrace{\frac{1}{2}2^{-i}}_{\substack{1.\ Zufallsbit \\ ist\ 1}} \quad = \quad 2^{-(i+1)}$ \\ $\Rightarrow\ P(M\ akzeptiert\ w)\ =\ 2^{-6}\ =\ \frac{1}{64}$
+\end{description}
+

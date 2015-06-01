@@ -1,0 +1,33 @@
+Die folgende Tabelle beschreibt die Übergangsfunktion einer zufallsabhängigen Turingmaschine $M$ mit dem Eingabealphabet $\Sigma = \{a, b\}$, wobei gilt
+\begin{description}
+	\item [$\boldsymbol{q_i}$] in der Beschriftung der Zeilen bezeichnet einen Zustand mit $q_i \in Q$,
+	\item [$\boldsymbol{\rightarrow q_0}$] bezeichnet den Startzustand $q_0 \in Q$,
+	\item [$*\boldsymbol{q_i}$] bezeichnet einen Endzustand $q_i \in F$,
+	\item [XY] in der Beschriftung der Spalten bezeichnen die gelesenen Symbole auf dem Eingabeband ($X$) und auf dem Zufallsband ($Y$),
+	\item [qUVDE] in einer Zelle bedeutet, dass $M$ in den Zustand $q$ wechselt, $U$ auf das Eingabe- und $V$ auf das Zufallsband schreibt und den Eingabekopf in Richtung $D$ sowie den Kopf auf dem Zufallsband in Richtung $E$ bewegt,
+	\item [S] als Richtung bedeutet, dass der Kopf auf der aktuellen Position stehen bleibt,
+	\item [R] als Richtung bedeutet, dass der Kopf nach rechts bewegt wird.
+\end{description}
+
+\bgroup
+	\def\arraystretch{1.5}
+	\begin{tabular}{r || c | c | c | c | c | c}
+		& \textbf{a0} & \textbf{a1} & \textbf{b0} & \textbf{b1} & \textbf{B0} & \textbf{B1} \\
+		\hline \hline
+		$\boldsymbol{\rightarrow q_0}$ & $q_1a0RS$ & $q_3a1SR$ & $q_2b0RS$ & $q_3b1SR$ & & \\
+		\hline
+		$\boldsymbol{q_1}$ & $q_1a0RS$ & & & & $q_4B0SS$ & \\
+		\hline
+		$\boldsymbol{q_2}$ & & & $q_2b0RS$ & & $q_4B0SS$ & \\
+		\hline
+		$\boldsymbol{q_3}$ & $q_3a0RR$ & & & $q_3b1RR$ & $q_4B0SS$ & $q_4B1SS$ \\
+		\hline
+		$\boldsymbol{*q_4}$ & & & & & & \\
+	\end{tabular}
+\egroup
+
+\begin{description}
+	\item [a.)] Wie könnte sich $M$ auf der Eingabe $w = ab$ verhalten?
+	\item [b.)] Mit welcher Wahrscheinlichkeit akzeptiert $M$ eine homogene Eingabe $a^i,\ i \in \mathbb{N}^+$?
+	\item [c.)] Mit welcher Wahrscheinlichkeit akzeptiert $M$ eine heterogene Eingabe? Berechnen Sie $P(M\ akzeptiert\ w),\ w = aabab$! 
+\end{description}
