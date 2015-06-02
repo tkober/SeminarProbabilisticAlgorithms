@@ -64,22 +64,23 @@ Allerdings wird $w$ nie akzeptiert obwohl $w \notin L$ gilt (\emph{false positiv
 Sei $L \in RP$, $c > 0$.
 \setcounter{equation}{0}
 \begin{alignat}
-	\exists Monte-Carlo-Turingmaschine\ M:\ 
+	\exists \exists Monte-Carlo-Turingmaschine\ M:\ 
 	& L = L(M), \\
 	& P(false\ positive) = 0, \\
-	& P(false\ negative) \leq c
+	& P(false\ negative) \leq c, \\
+	& M \in \mathcal{O}(n^k) \quad k \in \mathbb{N}^+ 
 \end{alignat}
 
-\paragraph{Beweisidee}
+\paragraph{Beweis}
 Da $L \in RP$ folgt (1) und (2) aus der Definition von $RP$.
-Da $M$ eine Turingmaschine vom Typ Monte Carlo ist, gilt per Definition $P(M\ akzeptiert\ w) \geq \frac{1}{2}$ falls $w \in L$. \\
+(3) da $M$ eine Turingmaschine vom Typ Monte Carlo ist, gilt per Definition $P(M\ akzeptiert\ w) \geq \frac{1}{2}$ falls $w \in L$. \\
 $\Rightarrow \quad P(false\ negative) \leq \frac{1}{2}$ \\
 Die Wahrscheinlichkeit, dass $i$ Prüfungen alle ein \emph{false negative} ergeben ist als $\leq 2^{-i}$. 
 Durch $\lceil log_{2}(\frac{1}{c}) \rceil$ Wiederholungen der Prüfung gilt also $P(false\ negative) \leq c$. \\
-Da $L \in RP$ benötigt auch die wiederholte Prüfung einen polynomiellen Zeitaufwand.
+(4) da $L \in RP$ benötigt auch die wiederholte Prüfung einen polynomiellen Zeitaufwand.
 
 \paragraph{Aufgabe}
-Sei $M$ eine Turing-Maschine vom Type Monte Carlo. Wie oft muss geprüft werden ob $w \in L$ gilt, damit die Wahrscheinlichkeit eines \emph{false negatives} nicht größer als eins zu eine Milliarde liegt?
+Sei $L \in RP$. Wie oft muss geprüft werden ob $w \in L$ gilt, damit die Wahrscheinlichkeit eines \emph{false negatives} nicht größer als eins zu eine Milliarde liegt?
 
 \paragraph{Lösung}
 $\lceil log_{2}(\frac{1}{10^{-9}}) \rceil = 30$
