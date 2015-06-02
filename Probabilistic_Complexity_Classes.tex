@@ -15,13 +15,13 @@ Wir schreiben $f(n) = \mathcal{O}(g(n))$ falls gilt:
 \end{equation*}
 
 \paragraph{Definition}
-$TIME(t(n))\ =\ \bigl\{L\ \bigl\vert\ \exists: \mathcal{O}(t(n))-TM,\ die\ L\ entscheidet \bigl\}$ heißt \emph{Zeitkomplexitätsklasse}.
+$TIME(t(n))\ =\ \bigl\{L\ \bigl\vert\ \exists TM\ M : M\ entscheidet\ L\ in\ \mathcal{O}(t(n)) \bigl\}$ heißt \emph{Zeitkomplexitätsklasse}.
 
 \paragraph{Definition}
 $P = \bigcup\limits_{k=0}^{\infty} TIME(n^k)$ ist die Zeitkomplexitätsklasse der Sprachen, die durch eine deterministische Turingmaschine in polynomieller Zeit entschieden werden können.
 
 \paragraph{Definition}
-$NTIME(t(n))\ =\ \bigl\{L\ \bigl\vert\ \exists: \mathcal{O}(t(n))-NTM,\ die\ L\ entscheidet \bigl\}$ heißt \emph{nichtdeterministische Zeitkomplexitätsklasse}.
+$NTIME(t(n))\ =\ \bigl\{L\ \bigl\vert\ \exists NTM\ M : M\ entscheidet\ L\ in\ \mathcal{O}(t(n)) \bigl\}$ heißt \emph{nichtdeterministische Zeitkomplexitätsklasse}.
 
 \paragraph{Definition}
 $NP = \bigcup\limits_{k=0}^{\infty} NTIME(n^k)$ ist die nichtdeterministische Zeitkomplexitätsklasse der Sprachen, die durch eine nichtdeterministische Turingmaschine in polynomieller Zeit entschieden werden können.
@@ -37,7 +37,52 @@ Sei $M$ eine zufallsabhängige Turingmaschine und $L = L(M)$. $M$ ist vom Typ \e
 Wir schreiben auch $M$ ist eine \emph{Monte-Carlo-Turinmaschine}.
 
 \paragraph{Definition}
-$RP = \bigcup\limits_{k=0}^{\infty} \bigl\{\ L\ \bigl\lvert\ \exists: \mathcal{O}(n^k)-Monte-Carlo-Turingmaschine,\ die\ L\ entscheidet \bigl\}$ ist die Klasse der Sprachen, die durch eine Monte-Carlo-Turingmaschine in polynomieller Zeit entschieden werden kann und wird \emph{Random Polynomial} genannt.
+$RP = \bigcup\limits_{k=0}^{\infty} \bigl\{\ L\ \bigl\lvert\ \exists Monte-Carlo-Turingmaschine\ M : M\ entscheidet\ L\ in\ \mathcal{O}(n^k) \bigl\}$ ist die Klasse der Sprachen, die durch eine Monte-Carlo-Turingmaschine in polynomieller Zeit entschieden werden kann und wird \emph{Random Polynomial} genannt.
+
+\paragraph{Aufgabe}
+Ist die L Sprache der zufallsabhängigen Turingmaschine aus dem Beispiel \ref{PTM_Example1} in der Klasse $RP$?
+
+\paragraph{Lösung}
+$M$ arbeitet unabhängig vom Inhalt des Zufallsbandes in $\mathcal{O}(n)$ und akzeptiert homogene Eingaben mit einer Wahrscheinlichkeit $\geq \frac{1}{2}$.
+Allerdings gibt es heterogene Eingaben die mit einer Wahrscheinlichkeit $< \frac{1}{2}$ akzeptiert werden.
+Beispielsweise gilt $P(M\ akzeptiert\ w=aab) = 2^{-(3+1)} = \frac{1}{16}$. \\
+$\Rightarrow \quad M\ ist\ keine\ Turingmaschine\ vom\ Typ\ Monte\ Carlo$ \\
+$\Rightarrow \quad L(M) \notin RP$.
+
+\paragraph{Beobachtung}
+Sei $M$ eine Monte-Carlo-Turingmaschine und $L = M(L)$, dann gilt:
+\begin{alignat}{2}
+	w \notin L \quad & \Rightarrow \quad P(M\ akzeptiert\ w) = 0 \\
+	w \in L \quad & \Rightarrow \quad P(M\ akzeptiert\ w) \geq \frac{1}{2}
+\end{alignat}
+Offenbar wird $w$ eventuell verworfen obwohl $w \in L$ gilt (\emph{false negative}).
+Allerdings wird $w$ nie akzeptiert obwohl $w \notin L$ gilt (\emph{false positive}).
+
+\emph{False negatives} können wir nie vermeiden, aber die Wahrscheinlichkeit ihres Auftretens durch Wiederholung der Prüfung $w \in L$ beliebig minimieren.
+
+\paragraph{Satz}
+Sei $L \in RP$, $c > 0$.
+\setcounter{equation}{0}
+\begin{alignat}
+	\exists Monte-Carlo-Turingmaschine\ M:\ 
+	& L = L(M), \\
+	& P(false\ positive) = 0, \\
+	& P(false\ negative) \leq c
+\end{alignat}
+
+\paragraph{Beweisidee}
+Da $L \in RP$ folgt (1) und (2) aus der Definition von $RP$.
+Da $M$ eine Turingmaschine vom Typ Monte Carlo ist, gilt per Definition $P(M\ akzeptiert\ w) \geq \frac{1}{2}$ falls $w \in L$. \\
+$\Rightarrow \quad P(false\ negative) \leq \frac{1}{2}$ \\
+Die Wahrscheinlichkeit, dass $i$ Prüfungen alle ein \emph{false negative} ergeben ist als $\leq 2^{-i}$. 
+Durch $\lceil log_{2}(\frac{1}{c}) \rceil$ Wiederholungen der Prüfung gilt also $P(false\ negative) \leq c$. \\
+Da $L \in RP$ benötigt auch die wiederholte Prüfung einen polynomiellen Zeitaufwand.
+
+\paragraph{Aufgabe}
+Sei $M$ eine Turing-Maschine vom Type Monte Carlo. Wie oft muss geprüft werden ob $w \in L$ gilt, damit die Wahrscheinlichkeit eines \emph{false negatives} nicht größer als eins zu eine Milliarde liegt?
+
+\paragraph{Lösung}
+$\lceil log_{2}(\frac{1}{10^{-9}}) \rceil = 30$
 
 \subsection{BPP}
 
