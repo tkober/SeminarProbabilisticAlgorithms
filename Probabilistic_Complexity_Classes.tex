@@ -31,8 +31,8 @@ $NP = \bigcup\limits_{k=0}^{\infty} NTIME(n^k)$ ist die nichtdeterministische Ze
 \paragraph{Definition}
 Sei $M$ eine zufallsabhängige Turingmaschine und $L = L(M)$. $M$ ist vom Typ \emph{Monte Carlo} falls gilt:
 \begin{align*}
-	P(M\ akzeptiert\ w) & = 0,\quad w \notin L \\
-	P(M\ akzeptiert\ w) & \geq \frac{1}{2},\quad w \in L
+	Pr[M\ akzeptiert\ w] & = 0,\quad w \notin L \\
+	Pr[M\ akzeptiert\ w] & \geq \frac{1}{2},\quad w \in L
 \end{align*}
 Wir schreiben auch $M$ ist eine \emph{Monte-Carlo-Turinmaschine}.
 
@@ -45,15 +45,15 @@ Ist die L Sprache der zufallsabhängigen Turingmaschine aus dem Beispiel \ref{PT
 \paragraph{Lösung}
 $M$ arbeitet unabhängig vom Inhalt des Zufallsbandes in $\mathcal{O}(n)$ und akzeptiert homogene Eingaben mit einer Wahrscheinlichkeit $\geq \frac{1}{2}$.
 Allerdings gibt es heterogene Eingaben die mit einer Wahrscheinlichkeit $< \frac{1}{2}$ akzeptiert werden.
-Beispielsweise gilt $P(M\ akzeptiert\ w=aab) = 2^{-(3+1)} = \frac{1}{16}$. \\
+Beispielsweise gilt $Pr[M\ akzeptiert\ w=aab] = 2^{-(3+1)} = \frac{1}{16}$. \\
 $\Rightarrow \quad M\ ist\ keine\ Turingmaschine\ vom\ Typ\ Monte\ Carlo$ \\
 $\Rightarrow \quad L(M) \notin RP$.
 
 \paragraph{Beobachtung}
 Sei $M$ eine Monte-Carlo-Turingmaschine und $L = M(L)$, dann gilt:
 \begin{alignat}{2}
-	w \notin L \quad & \Rightarrow \quad P(M\ akzeptiert\ w) = 0 \\
-	w \in L \quad & \Rightarrow \quad P(M\ akzeptiert\ w) \geq \frac{1}{2}
+	w \notin L \quad & \Rightarrow \quad Pr[M\ akzeptiert\ w] = 0 \\
+	w \in L \quad & \Rightarrow \quad Pr[M\ akzeptiert\ w] \geq \frac{1}{2}
 \end{alignat}
 Offenbar wird $w$ eventuell verworfen obwohl $w \in L$ gilt (\emph{false negative}).
 Allerdings wird $w$ nie akzeptiert obwohl $w \notin L$ gilt (\emph{false positive}).
@@ -66,17 +66,17 @@ Sei $L \in RP$, $c > 0$.
 \begin{alignat}
 	\exists \exists Monte-Carlo-Turingmaschine\ M:\ 
 	& L = L(M), \\
-	& P(false\ positive) = 0, \\
-	& P(false\ negative) \leq c, \\
+	& Pr[false\ positive] = 0, \\
+	& Pr[false\ negative] \leq c, \\
 	& M \in \mathcal{O}(n^k) \quad k \in \mathbb{N}^+ 
 \end{alignat}
 
 \paragraph{Beweis}
 Da $L \in RP$ folgt (1) und (2) aus der Definition von $RP$.
-(3) da $M$ eine Turingmaschine vom Typ Monte Carlo ist, gilt per Definition $P(M\ akzeptiert\ w) \geq \frac{1}{2}$ falls $w \in L$. \\
-$\Rightarrow \quad P(false\ negative) \leq \frac{1}{2}$ \\
+(3) da $M$ eine Turingmaschine vom Typ Monte Carlo ist, gilt per Definition $Pr[M\ akzeptiert\ w] \geq \frac{1}{2}$ falls $w \in L$. \\
+$\Rightarrow \quad Pr[false\ negative] \leq \frac{1}{2}$ \\
 Die Wahrscheinlichkeit, dass $i$ Prüfungen alle ein \emph{false negative} ergeben ist als $\leq 2^{-i}$. 
-Durch $\lceil log_{2}(\frac{1}{c}) \rceil$ Wiederholungen der Prüfung gilt also $P(false\ negative) \leq c$. \\
+Durch $\lceil log_{2}(\frac{1}{c}) \rceil$ Wiederholungen der Prüfung gilt also $Pr[false\ negative] \leq c$. \\
 (4) da $L \in RP$ benötigt auch die wiederholte Prüfung einen polynomiellen Zeitaufwand.
 
 \paragraph{Aufgabe}

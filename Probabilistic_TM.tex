@@ -2,7 +2,7 @@
 \subsection{Definition}
 Wir nutzen das Modell der Mehrband-Turingmaschine um abstrakt die Fähigkeit einer Turing-Maschine zu zeigen, eine zufällige Auswahl zu treffen, entsprechend einem Programm, das einen Zufallszahlengenerator einmal oder mehrfach aufruft.
 Auf dem ersten Band steht wie bei einer Mehrband-Turingmaschine üblich die Eingabe.
-Das zweite Band, das sogenannte \emph{Zufallsband}, ist vollständig mit den Symbolen $1$ und $0$, die zufällig und unabhängig voneinander mit der Wahrscheinlichkeit $P(x) = \frac{1}{2}, x \in \{0, 1\}$.
+Das zweite Band, das sogenannte \emph{Zufallsband}, ist vollständig mit den Symbolen $1$ und $0$, die zufällig und unabhängig voneinander mit der Wahrscheinlichkeit $Pr[x] = \frac{1}{2}, x \in \{0, 1\}$.
 Die übrigen Bänder sind initial leer und können nach Bedarf als \emph{Hilfsbänder} genutzt werden.
 
 \begin{figure}[h]
@@ -43,12 +43,12 @@ Wollen wir eine Aussage über die Verarbeitung einer Eingabe $w$ auf einer zufal
 Sei $M$ eine zufallsabhängige Turingmaschine.
 Für die Wahrscheinlichkeit einer Berechnung $b$ auf einer Eingabe $w$ gilt
 \begin{equation*}
-	P(b) = 2^{-k}
+	Pr[b] = 2^{-k}
 \end{equation*}
 wobei $k$ die Anzahl der \emph{Coin-Flip-Schritte} in $b$ ist. 
 Ferner gilt für die Akzeptanz von $w$
 \begin{equation*}
-	P(M\ akzeptiert\ w) = \sum_{\substack{b\ ist\ akz.\\ Berechnung}} P(b) 
+	Pr[M\ akzeptiert\ w] = \sum_{\substack{b\ ist\ akz.\\ Berechnung}} Pr[b] 
 \end{equation*}
 
 \subsection{Beispiel}
@@ -94,7 +94,7 @@ Ferner gilt für die Akzeptanz von $w$
     };
 \end{tikzpicture}
 	\item [b.)] $\underbrace{\frac{1}{2}}_{\substack{1.\ Zufallsbit \\ ist\ 0}}\ +\ \underbrace{\frac{1}{2}2^{-i}}_{\substack{1.\ Zufallsbit \\ ist\ 1}} \quad = \quad \frac{1}{2} + 2^{-(i+1)}$
-	\item [c.)] $\underbrace{0}_{\substack{1.\ Zufallsbit \\ ist\ 0}}\ +\ \underbrace{\frac{1}{2}2^{-i}}_{\substack{1.\ Zufallsbit \\ ist\ 1}} \quad = \quad 2^{-(i+1)}$ \\ $\Rightarrow\ P(M\ akzeptiert\ w)\ =\ 2^{-6}\ =\ \frac{1}{64}$
+	\item [c.)] $\underbrace{0}_{\substack{1.\ Zufallsbit \\ ist\ 0}}\ +\ \underbrace{\frac{1}{2}2^{-i}}_{\substack{1.\ Zufallsbit \\ ist\ 1}} \quad = \quad 2^{-(i+1)}$ \\ $\Rightarrow\ Pr[M\ akzeptiert\ w]\ =\ 2^{-6}\ =\ \frac{1}{64}$
 \end{description}
 
 
