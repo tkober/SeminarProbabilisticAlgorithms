@@ -93,6 +93,9 @@ Sei $0 \leq \epsilon < \frac{1}{2}$. Wir sagen \emph{M entscheidet ein wort w mi
 	w \notin L \quad & \Rightarrow \quad Pr[M\ verwirft\ w] \geq 1 - \epsilon
 \end{align*}
 
+\paragraph{Beispiel}
+TODO
+
 \paragraph{Definition}
 $BPP = \bigcup\limits_{k=0}^{\infty} \bigl\{\ L\ \bigl\lvert\ \exists PTM\ M : M\ entscheidet\ L\ in\ \mathcal{O}(n^k),\ \epsilon =  \frac{1}{3} \bigl\}$ ist die Klasse der Sprachen, die von einer zufallsabhängigen Turingmaschine mit einem Fehler von $\epsilon = \frac{1}{3}$ in polynomieller Zeit entschieden werden können und wird \emph{Bounded-Error Probabilstic Polynomial} genannt.
 
@@ -102,9 +105,72 @@ $BPP = \bigcup\limits_{k=0}^{\infty} \bigl\{\ L\ \bigl\lvert\ \exists PTM\ M : M
 Sei $M$ eine zufallsabhängige Turingmaschine und $L = L(M)$. $M$ ist vom Typ \emph{Las Vegas}, wenn sie immer die korrekte Antwort gibt.
 
 \paragraph{Definition}
-$ZPP = \bigcup\limits_{k=0}^{\infty} \bigl\{\ L\ \bigl\lvert\ \exists Las-Vegas-Turingmaschine\ M : M\ entscheidet\ L\ in\ \mathcal{O}(n^k) \bigl\}$ ist die Klasse der Sprachen, die durch eine Las-Vegas-Turingmaschine in polynomieller Zeit entschieden werden können und wird \emph{Zero-Error Probabilitic Polynomial} genannt.
+$ZPP = \bigcup\limits_{k=0}^{\infty} \bigl\{\ L\ \bigl\lvert\ \exists Las-Vegas-Turingmaschine\ M : E(M\ entscheidet\ L) \in \mathcal{O}(n^k) \bigl\}$ ist die Klasse der Sprachen, die durch eine Las-Vegas-Turingmaschine entschieden werden können und für die Zeit bis zum Anhalten einen polynomiellen Erwartungswert hat. 
+Sie wird \emph{Zero-Error Probabilitic Polynomial} genannt.
 
 
+\subsection{Beziehung zwischen ZPP und RP}
+\paragraph{Beobachtung}
+Offensichtlich gilt $L \in ZPP \Rightarrow \overline{L} \in ZPP$.
+Wird nämlich $L$ von einer Las-Vegas-Turingmaschine $M$ mit polynomialem Erwartungswert für den Zeitaufwand akzeptiert, dann wird $L$ von einer modifizierten Las-Vegas-Turingmaschine $M'$ akzeptiert, bei der die Akzeptanz in $M$ durch Anhalten ohne zu akzeptieren, und Anhalten ohne Akzeptanz in $M$ durch Akzeptanz ersetzt wird.
+
+Das $RP$ unter Komplementbildung abgeschlossen ist, ist allerdings nicht offensichtlich.
+
+\paragraph{Definition}
+$CoRP = \bigcup \bigl\{\ L\ \bigl\lvert\ \overline{L} \in RP\ \}$
+
+\paragraph{Satz}
+$ZPP = RP \cap CoRP$
+
+\paragraph{Beweis}
+Zuerst zeigen wir $RP \cap CoRP \subseteq ZPP$.\\
+\\
+Angenommen $L \in RP \cap CoRP$, dann gibt es für $L$ und $\overline{L}$ Monte-Carlo-Turingmaschinen $M_1$ und $M_2$ in $\mathcal{O}(n^k)$.
+Wähle $p(n)$ so, dass $p(n)$ $M_1$ und $M_2$ begrenzt.
+Wir entwerfen für $L$ eine Las-Vegas-Turingmaschine $M$ wie folgt:
+\begin{enumerate}
+	\item $M_1$ akzeptiert $\Rightarrow$ $M$ akzeptiert und hält an.
+	\item $M_2$ akzeptiert $\Rightarrow$ $M$ hält an ohne zu akzeptieren.
+	\item Wiederhole (1).
+\end{enumerate}
+Der Erwartungswert für die Ausführungszeit jeder \emph{Runde}(= Schritt (1) und (2)) beträgt $2p(n)$.
+Die Wahrscheinlichkeit zu einem Ergebnis zu kommen ist pro Runde $\geq \frac{1}{2}$.
+Damit gilt:
+\begin{equation*}
+	E(M) = 2p(n) + \frac{1}{2}2p(n) + \frac{1}{4}2p(n) + ... = \sum\limits_{k=0}^{\infty}\frac{1}{2^k}2p(n) = 4p(n)
+\end{equation*}
+\\
+Sehen wir uns nun die Umkehrung an.
+Sei $L \in ZPP$.
+Wir zeigen $L \in RP$ und $L \in CoRP$.
+
+\paragraph{Teil 1:}
+$L \in RP$\\
+Wir wissen, es gibt eine Las-Vegas-Turingmaschine $M_A$ mit $L(M_A) = L$ und $E(M_A) = p(n)$.
+Wir konstruieren eine Monte-Carlo-Turingmaschine $M_B$ für $L$ wie folgt:
+\begin{itemize}
+	\item $M_B$ simuliert $w$ auf $M_A$ für $2p(n)$ Schritte, $|w| = n$
+	\item $M_A$ akzeptiert $w$ $\Rightarrow$ $M_B$ akzeptiert
+	\item sonst verwirft $M_B$
+\end{itemize}
+Aus dieser Konstruktion folgt:
+\begin{align*}
+	w \notin L\ &=\ M_A\ akzeptiet\ nicht\ \Rightarrow M_B\ akzeptiert\ nicht \\
+	w \in L\ &=\ M_A\ akzeptiet\ ,\ aber\ eventuell\ nicht\ in\ 2p(n)\ Schritten
+\end{align*}
+Behauptung:
+$Pr[M_A\ akzeptiert\ w\ in\ 2p(n)\ Schritten] \geq \frac{1}{2}$ \\
+Annahme:
+$c = Pr[M_A\ akzeptiert\ w\ in\ 2p(n)\ Schritten] < \frac{1}{2}$ \\
+$\Rightarrow\ E(M_A) \geq (1-c)2p(n)$\\
+$\xRightarrow{c < \frac{1}{2}}\ 2(1-c) > 1$ und $E(M_A) > p(n) \quad \lightning$\\
+$\Rightarrow Pr[M_B\ akzeptiert\ w] \geq \frac{1}{2}$\\
+$\Rightarrow M_B\ ist\ vom\ Typ\ Monte\ Carlo$\\
+$\Rightarrow L \in RP$
+
+\paragraph{Teil 2:}
+$L \in CoRP$\\
+Analog mit $\overline{L}$ und $\overline{M_A}$, $\overline{M_B}$.
 
 
 
