@@ -40,7 +40,7 @@ Wir schreiben auch $M$ ist eine \emph{Monte-Carlo-Turinmaschine}.
 $RP = \bigcup\limits_{k=0}^{\infty} \bigl\{\ L\ \bigl\lvert\ \exists Monte-Carlo-Turingmaschine\ M : M\ entscheidet\ L\ in\ \mathcal{O}(n^k) \bigl\}$ ist die Klasse der Sprachen, die durch eine Monte-Carlo-Turingmaschine in polynomieller Zeit entschieden werden können und wird \emph{Random Polynomial} genannt.
 
 \paragraph{Aufgabe}
-Ist die L Sprache der zufallsabhängigen Turingmaschine aus dem Beispiel \ref{PTM_Example1} in der Klasse $RP$?
+Ist die Sprache der zufallsabhängigen Turingmaschine aus dem Beispiel \ref{PTM_Example1} in der Klasse $RP$?
 
 \paragraph{Lösung}
 $M$ arbeitet unabhängig vom Inhalt des Zufallsbandes in $\mathcal{O}(n)$ und akzeptiert homogene Eingaben mit einer Wahrscheinlichkeit $\geq \frac{1}{2}$.
@@ -75,7 +75,7 @@ Sei $L \in RP$, $c > 0$.
 Da $L \in RP$ folgt (1) und (2) aus der Definition von $RP$.
 (3) da $M$ eine Turingmaschine vom Typ Monte Carlo ist, gilt per Definition $Pr[M\ akzeptiert\ w] \geq \frac{1}{2}$ falls $w \in L$. \\
 $\Rightarrow \quad Pr[false\ negative] \leq \frac{1}{2}$ \\
-Die Wahrscheinlichkeit, dass $i$ Prüfungen alle ein \emph{false negative} ergeben ist als $\leq 2^{-i}$. 
+Die Wahrscheinlichkeit, dass $i$ Prüfungen alle ein \emph{false negative} ergeben ist also $\leq 2^{-i}$. 
 Durch $\lceil log_{2}(\frac{1}{c}) \rceil$ Wiederholungen der Prüfung gilt also $Pr[false\ negative] \leq c$. \\
 (4) da $L \in RP$ benötigt auch die wiederholte Prüfung einen polynomiellen Zeitaufwand.
 
@@ -136,6 +136,7 @@ Damit gilt:
 \begin{equation*}
 	E(M) = 2p(n) + \frac{1}{2}2p(n) + \frac{1}{4}2p(n) + ... = \sum\limits_{k=0}^{\infty}\frac{1}{2^k}2p(n) = 4p(n)
 \end{equation*}
+$\Rightarrow RP \cap CoRP \subseteq ZPP \hfill \Box$\\
 \\
 Sehen wir uns nun die Umkehrung an.
 Sei $L \in ZPP$.
@@ -155,7 +156,7 @@ Aus dieser Konstruktion folgt:
 	w \notin L\ &=\ M_A\ akzeptiet\ nicht\ \Rightarrow M_B\ akzeptiert\ nicht \\
 	w \in L\ &=\ M_A\ akzeptiet\ ,\ aber\ eventuell\ nicht\ in\ 2p(n)\ Schritten
 \end{align*}
-Behauptung:
+Allerdings behaupten wir:
 $Pr[M_A\ akzeptiert\ w\ in\ 2p(n)\ Schritten] \geq \frac{1}{2}$ \\
 Annahme:
 $c = Pr[M_A\ akzeptiert\ w\ in\ 2p(n)\ Schritten] < \frac{1}{2}$ \\
