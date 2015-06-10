@@ -110,6 +110,21 @@ Sie wird \emph{Zero-Error Probabilitic Polynomial} genannt.
 
 
 \subsection{Beziehung zwischen ZPP und RP}
+\bgroup
+	\def\arraystretch{1.5}
+	\begin{tabular}{l || c | c }
+		& $\boldsymbol{Pr[false\ positive]}$ & $\boldsymbol{Pr[false\ negative]}$ \\
+		\hline \hline
+		\textbf{ZPP} & $0$ & $0$ \\
+		\hline
+		\textbf{RP} & $0$ & $\leq\frac{1}{2}$ \\
+		\hline
+		\textbf{Co-RP} & $\leq\frac{1}{2}$ & $0$ \\
+		\hline
+		\textbf{BPP} & $\leq\frac{1}{3}$ & $\leq\frac{1}{3}$ \\
+	\end{tabular}
+\egroup
+
 \paragraph{Beobachtung}
 Offensichtlich gilt $L \in ZPP \Rightarrow \overline{L} \in ZPP$.
 Wird nämlich $L$ von einer Las-Vegas-Turingmaschine $M$ mit polynomialem Erwartungswert für den Zeitaufwand akzeptiert, dann wird $L$ von einer modifizierten Las-Vegas-Turingmaschine $M'$ akzeptiert, bei der die Akzeptanz in $M$ durch Anhalten ohne zu akzeptieren, und Anhalten ohne Akzeptanz in $M$ durch Akzeptanz ersetzt wird.

@@ -4,13 +4,7 @@ Wir nutzen das Modell der Mehrband-Turingmaschine um abstrakt die Fähigkeit ein
 Auf dem ersten Band steht wie bei einer Mehrband-Turingmaschine üblich die Eingabe.
 Das zweite Band, das sogenannte \emph{Zufallsband}, ist vollständig mit den Symbolen $1$ und $0$, die zufällig und unabhängig voneinander mit der Wahrscheinlichkeit $Pr[x] = \frac{1}{2}, x \in \{0, 1\}$.
 Die übrigen Bänder sind initial leer und können nach Bedarf als \emph{Hilfsbänder} genutzt werden.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=.8\textwidth]{Graphics/Probabilistic_TM}	
-	\caption{Darstellung einer zufallsabhängigen Turingmaschine}
-	\label{fig:probabilistic_tm}
-\end{figure}
+\input{PTM}
 
 Wir nennen dieses Modell einer Turingmaschine \emph{zufallsabhängige Turingmaschine} oder \emph{probabilistische Turingmaschine}.
 
