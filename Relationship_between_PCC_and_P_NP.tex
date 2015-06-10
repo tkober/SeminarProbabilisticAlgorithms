@@ -22,7 +22,7 @@ Jede polynomielle deterministische Turingmaschine ist ebenfalls eine polynomiell
 $RP \subseteq NP$
 
 \paragraph{Beweis}
-Wir nehmen an, es gibt eine Monte-Carlo-Turingmaschine $M_1$, $L(M) = L$.
+Wir nehmen an, es gibt eine Monte-Carlo-Turingmaschine $M_1$, $L(M_1) = L$.
 Wir können eine äquivalente, nichtdeterministische Turingmaschine $M_2$ mit gleicher Zeitbegrenzung konstruieren:
 \begin{itemize}
 	\item $M_2$ \emph{rät} stets das Zufallsbit von $M_1$ und legt es auf ein Hilfsband.
@@ -30,7 +30,7 @@ Wir können eine äquivalente, nichtdeterministische Turingmaschine $M_2$ mit gl
 		M_2 =
 		\begin{cases}
 			akzeptiert &,\ M_1\ akzeptiert\\
-			verwirft &,\ sonst
+			akzeptiert\ nicht &,\ sonst
 		\end{cases}
 	\end{equation*}
 \end{itemize}

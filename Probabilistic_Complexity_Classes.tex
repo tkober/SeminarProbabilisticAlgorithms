@@ -3,25 +3,25 @@
 
 \subsection{Wiederholung: Zeitkomplexität}
 
-\paragraph{Definition}
-Sei $M$ eine Turingmaschine, die immer anhält.
-Die Funktion $f:\mathbb{N}\to\mathbb{N}$ heißt \emph{Zeitkomplexität} von $M$, wobei $f(n)$ die maximale Anzahl an Berechnungsschritten ist.
+%\paragraph{Definition}
+%Sei $M$ eine Turingmaschine, die immer anhält.
+%Die Funktion $f:\mathbb{N}\to\mathbb{N}$ heißt \emph{Zeitkomplexität} von $M$, wobei $f(n)$ die maximale Anzahl an Berechnungsschritten ist.
 
-\paragraph{Definition}
-Seien $f,g:\mathbb{N}\to\mathbb{N}$.
-Wir schreiben $f(n) = \mathcal{O}(g(n))$ falls gilt:
-\begin{equation*}
-	\forall_{n \geq n_0}:\ f(n)\ \leq \ c \cdot g(n), \quad c \in \mathbb{R}^+,\ n_0 \in \mathbb{N}
-\end{equation*}
+%\paragraph{Definition}
+%Seien $f,g:\mathbb{N}\to\mathbb{N}$.
+%Wir schreiben $f(n) = \mathcal{O}(g(n))$ falls gilt:
+%\begin{equation*}
+%	\forall_{n \geq n_0}:\ f(n)\ \leq \ c \cdot g(n), \quad c \in \mathbb{R}^+,\ n_0 \in \mathbb{N}
+%\end{equation*}
 
-\paragraph{Definition}
-$TIME(t(n))\ =\ \bigl\{L\ \bigl\vert\ \exists TM\ M : M\ entscheidet\ L\ in\ \mathcal{O}(t(n)) \bigl\}$ heißt \emph{Zeitkomplexitätsklasse}.
+%\paragraph{Definition}
+%$TIME(t(n))\ =\ \bigl\{L\ \bigl\vert\ \exists TM\ M : M\ entscheidet\ L\ in\ \mathcal{O}(t(n)) \bigl\}$ heißt \emph{Zeitkomplexitätsklasse}.
 
 \paragraph{Definition}
 $P = \bigcup\limits_{k=0}^{\infty} TIME(n^k)$ ist die Zeitkomplexitätsklasse der Sprachen, die durch eine deterministische Turingmaschine in polynomieller Zeit entschieden werden können.
 
-\paragraph{Definition}
-$NTIME(t(n))\ =\ \bigl\{L\ \bigl\vert\ \exists NTM\ M : M\ entscheidet\ L\ in\ \mathcal{O}(t(n)) \bigl\}$ heißt \emph{nichtdeterministische Zeitkomplexitätsklasse}.
+%\paragraph{Definition}
+%$NTIME(t(n))\ =\ \bigl\{L\ \bigl\vert\ \exists NTM\ M : M\ entscheidet\ L\ in\ \mathcal{O}(t(n)) \bigl\}$ heißt \emph{nichtdeterministische Zeitkomplexitätsklasse}.
 
 \paragraph{Definition}
 $NP = \bigcup\limits_{k=0}^{\infty} NTIME(n^k)$ ist die nichtdeterministische Zeitkomplexitätsklasse der Sprachen, die durch eine nichtdeterministische Turingmaschine in polynomieller Zeit entschieden werden können.
